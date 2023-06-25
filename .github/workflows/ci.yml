@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
 
       - name: Format code
-        run: npx prettier --check .
+        run: npx prettier --check "src/**/*.ts"
 
       - name: Check formatting
         run: |

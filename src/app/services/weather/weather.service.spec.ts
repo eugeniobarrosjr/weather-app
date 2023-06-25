@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { WeatherBulk } from '../../interfaces/weather';
+import { City } from '../../interfaces/city';
 
 describe('WeatherService', () => {
   let service: WeatherService;
@@ -25,7 +26,7 @@ describe('WeatherService', () => {
   });
 
   it('should fetch weather for multiple cities', () => {
-    const cities = ['Sorocaba', 'Curitiba'];
+    const cities: City[] = [{id: 1, name: 'Sorocaba' }, {id: 2, name: 'Curitiba' }];
     const mockWeatherData: WeatherBulk = {
       bulk: [
         {
@@ -72,9 +73,9 @@ describe('WeatherService', () => {
     const req = httpMock.expectOne(request => {
       return (
         request.method === 'POST' &&
-        request.url === 'http://api.weatherapi.com/v1/current.json?q=bulk' &&
+        request.url === 'http://api.weatherapi.com/v1/current.json?q=bulk&lang=pt' &&
         JSON.stringify(request.body.locations) ===
-          JSON.stringify(cities.map(city => ({ q: city })))
+          JSON.stringify(cities.map(city => ({ q: city.name })))
       );
     });
 

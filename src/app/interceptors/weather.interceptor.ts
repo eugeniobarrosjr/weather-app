@@ -16,7 +16,7 @@ export class WeatherApiKeyInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     console.log('Request', request);
     if (request.url.includes('api.weather')) {
-      const apiKey = environment.apiKey || '';
+      const apiKey = environment.apiKey;
 
       const params = request.params.set('key', apiKey);
       request = request.clone({ params });

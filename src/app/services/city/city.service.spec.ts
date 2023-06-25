@@ -4,7 +4,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { City } from '../../interfaces/city';
+import { Cities, City } from '../../interfaces/city';
 import { CityService } from './city.service';
 
 describe('CityService', () => {
@@ -36,13 +36,13 @@ describe('CityService', () => {
       { id: 3, name: 'Alphaville' },
     ];
 
-    service.index().subscribe((cities: City[]) => {
-      expect(cities).toEqual(mockCities);
+    service.index().subscribe((response: Cities) => {
+      expect(response.cities).toEqual(mockCities);
     });
 
     const req = httpMock.expectOne('/api/city');
     expect(req.request.method).toBe('GET');
-    req.flush(mockCities);
+    req.flush({ cities: mockCities });
   });
 
   it('should create a city successfully', () => {

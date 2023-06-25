@@ -14,11 +14,13 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.get('city');
       this.post('city');
+    
       this.passthrough('http://api.weatherapi.com/v1/**');
+      this.pretender.get('svg/*', this.pretender.passthrough);
     },
     seeds(server) {
       server.db.loadData({
-        cities: ['Sorocaba', 'Curitiba', 'Alphaville'].map((city, index) => ({
+        cities: ['Sorocaba', 'Curitiba', 'Barueri', 'Amesterdã'].map((city, index) => ({
           id: index + 1,
           name: city,
         })),

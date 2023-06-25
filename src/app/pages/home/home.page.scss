@@ -1,27 +1,53 @@
-#container {
-  text-align: center;
+$font-weight: 700;
 
-  position: absolute;
-  left: 0;
-  right: 0;
+.spinner--loading {
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+#container {
+  padding: 0.5em;
+
+  .card {
+    &__title {
+      color: var(--ion-robo-bank-blue-tint);
+      font-size: 1.25rem;
+      font-style: italic;
+    }
+
+    &__text {
+      color: var(--ion-robo-bank-dark-color);
+    }
+
+    &__data {
+      margin-bottom: 1rem;
+    }
+
+    &__emphasis {
+      font-size: 0.75rem;
+    }
+
+    &__temperature {
+      font-size: 2.25rem;
+      line-height: 3rem;
+    }
+
+    &__temperature,
+    &__emphasis {
+      font-weight: $font-weight;
+    }
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.footer {
+  padding: 1.375em;
 
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  &__button {
+    font-size: 1rem;
+    font-weight: $font-weight;
+    height: 3rem;
+    text-transform: capitalize;
+  }
 }

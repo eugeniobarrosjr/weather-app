@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          browser: chrome
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Format code
+        run: npx prettier --check .
+
+      - name: Check formatting
+        run: |
+          git diff --name-only --exit-code
+

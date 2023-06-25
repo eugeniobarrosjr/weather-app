@@ -22,10 +22,6 @@ export class ModalComponent implements OnInit {
     });
   }
 
-  get errorControl() {
-    return this.form.controls;
-  }
-
   submitForm() {
     if (this.form.valid) {
       this.create(this.form.value.name);

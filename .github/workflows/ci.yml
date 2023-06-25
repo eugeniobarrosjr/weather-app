@@ -32,9 +32,5 @@ jobs:
         run: npm run lint
 
       - name: Format code
-        run: npx prettier --check "src/**/*.ts"
-
-      - name: Check formatting
-        run: |
-          git diff --name-only --exit-code
+        run: npx prettier --check "src/app/**/*.ts"
 

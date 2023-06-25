@@ -2,15 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, switchMap } from 'rxjs';
 import { WeatherQuery } from 'src/app/interfaces/weather';
-import { Cities } from '../../interfaces/city';
 import { WeatherService } from '../../services/weather/weather.service';
 import { CityService } from '../../services/city/city.service';
-import {
-  AlertController,
-  IonRefresher,
-  RefresherEventDetail,
-  ToastController,
-} from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +14,7 @@ import {
 export class HomePage implements OnInit {
   weathers: WeatherQuery[] = [];
   isLoading = true;
-  isModalOpen = true;
+  isModalOpen = false;
 
   constructor(
     private http: HttpClient,
@@ -70,18 +64,15 @@ export class HomePage implements OnInit {
         this.setOpenModal(false);
         this.presentToast('Salvo com sucesso!', 'success');
       },
-      error => {
-        console.log(error);
+      error =>
         this.presentToast(
           'Ocorreu um erro ou a cidade já está cadastrada',
           'danger'
-        );
-      }
+        )
     );
   };
 
   setOpenModal = (isOpen: boolean): void => {
-    console.log('Foi', isOpen);
     this.isModalOpen = isOpen;
   };
 

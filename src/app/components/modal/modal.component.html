@@ -1,0 +1,43 @@
+<ion-modal [isOpen]="isOpen" class="modal" [backdropDismiss]="false">
+  <ng-template>
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-title>
+          <ion-text class="modal__title"> Adicionar Cidade </ion-text>
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setIsOpen(false)">
+            <ion-icon
+              aria-label="Fechar"
+              size="large"
+              color="primary"
+              slot="icon-only"
+              name="close"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-input
+                formControlName="name"
+                aria-label="Digite o nome da cidade..."
+                placeholder="Digite o nome da cidade..."
+                class="custom"
+              ></ion-input>
+            </ion-col>
+            <ion-col size="12">
+              <ion-button type="submit" color="secondary" expand="full">
+                Confirmar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

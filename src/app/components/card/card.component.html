@@ -1,0 +1,65 @@
+<ion-card>
+  <ion-card-header>
+    <ion-row
+      class="ion-align-items-center ion-justify-content-end ion-text-start"
+    >
+      <ion-col size="10">
+        <ion-card-title>
+          <ion-text class="card__title">
+            {{ weather.query.location.name }}
+          </ion-text>
+        </ion-card-title>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button
+          class="ion-margin-start"
+          size="small"
+          shape="round"
+          fill="clear"
+          (click)="deleteWeather(weather.query.location.name)"
+        >
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-justify-content-end">
+        <ion-col size="6">
+          <p class="card__data card__text">
+            <span class="card__emphasis">Vento:</span>
+            {{ weather.query.current.wind_kph }} km/h
+          </p>
+          <p class="card__data card__text">
+            <span class="card__emphasis">Precip:</span>
+            {{ weather.query.current.precip_mm }} cm
+          </p>
+          <p class="card__data card__text">
+            <span class="card__emphasis">Pressão:</span>
+            {{ weather.query.current.pressure_in }} cm
+          </p>
+        </ion-col>
+        <ion-col size="6" class="ion-align-self-end ion-text-end">
+          <ion-text color="secondary" class="card__temperature">
+            {{ weather.query.current.temp_c }} °C</ion-text
+          >
+          <ion-row class="ion-align-items-center">
+            <ion-col>
+              <ion-img
+                [src]="weather.query.current.condition.icon"
+                [alt]="weather.query.current.condition.text"
+              ></ion-img>
+            </ion-col>
+            <ion-col>
+              <p class="card__text">
+                {{ weather.query.current.condition.text }}
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

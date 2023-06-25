@@ -40,7 +40,7 @@ describe('CityService', () => {
       expect(response.cities).toEqual(mockCities);
     });
 
-    const req = httpMock.expectOne('/api/city');
+    const req = httpMock.expectOne('/api/cities');
     expect(req.request.method).toBe('GET');
     req.flush({ cities: mockCities });
   });
@@ -55,8 +55,18 @@ describe('CityService', () => {
       expect(city).toEqual(mockCity);
     });
 
-    const req = httpMock.expectOne('/api/city');
+    const req = httpMock.expectOne('/api/cities');
     expect(req.request.method).toBe('POST');
     req.flush(mockCity);
+  });
+
+  it('should delete a city successfully', () => {
+    service.delete('Sorocaba').subscribe(response => {
+      expect(response).toEqual({ ok: true });
+    });
+
+    const req = httpMock.expectOne('/api/cities/Sorocaba');
+    expect(req.request.method).toBe('DELETE');
+    req.flush({ ok: true });
   });
 });

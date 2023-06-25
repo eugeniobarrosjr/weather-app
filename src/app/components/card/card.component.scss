@@ -1,0 +1,32 @@
+$font-weight: 700;
+
+.card {
+  &__title {
+    color: var(--ion-robo-bank-blue-tint);
+    font-size: 1.25rem;
+    font-style: italic;
+  }
+
+  &__text {
+    color: var(--ion-robo-bank-dark-color);
+  }
+
+  &__data {
+    margin-bottom: 1rem;
+  }
+
+  &__emphasis {
+    font-size: 0.75rem;
+  }
+
+  &__temperature {
+    font-size: 2.25rem;
+    line-height: 3rem;
+  }
+
+  &__temperature,
+  &__emphasis {
+    font-weight: $font-weight;
+  }
+}
+

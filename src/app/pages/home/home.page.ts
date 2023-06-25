@@ -6,6 +6,7 @@ import { Cities } from '../../interfaces/city';
 import { WeatherService } from '../../services/weather/weather.service';
 import { CityService } from '../../services/city/city.service';
 import {
+  AlertController,
   IonRefresher,
   RefresherEventDetail,
   ToastController,
@@ -19,12 +20,14 @@ import {
 export class HomePage implements OnInit {
   weathers: WeatherQuery[] = [];
   isLoading = true;
+  isModalOpen = true;
 
   constructor(
     private http: HttpClient,
     private weatherService: WeatherService,
     private cityService: CityService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -51,6 +54,36 @@ export class HomePage implements OnInit {
         }
       );
   }
+
+  delete = (city: string): void => {
+    this.cityService.delete(city).subscribe(() => {
+      this.weathers = this.weathers.filter(
+        weather => weather.query.location.name !== city
+      );
+    });
+  };
+
+  create = (city: string): void => {
+    this.cityService.create(city).subscribe(
+      () => {
+        this.fetchCitiesAndWeathers();
+        this.setOpenModal(false);
+        this.presentToast('Salvo com sucesso!', 'success');
+      },
+      error => {
+        console.log(error);
+        this.presentToast(
+          'Ocorreu um erro ou a cidade já está cadastrada',
+          'danger'
+        );
+      }
+    );
+  };
+
+  setOpenModal = (isOpen: boolean): void => {
+    console.log('Foi', isOpen);
+    this.isModalOpen = isOpen;
+  };
 
   async presentToast(message: string, type: 'danger' | 'success') {
     const toast = await this.toastController.create({

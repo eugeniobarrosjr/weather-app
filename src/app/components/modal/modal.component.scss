@@ -1,0 +1,43 @@
+
+ion-modal {
+  --background: var(--ion-robobank-light-gray);
+  --border-radius: 4px;
+  --height: 33%;
+  --margin: 1rem;
+  --width: 90%;
+}
+
+ion-modal::part(backdrop) {
+  background: var(--ion-robo-bank-dark-color);
+  opacity: 0.5;
+}
+
+ion-modal ion-toolbar, ion-modal ion-content {
+  --background: var(--ion-robobank-light-gray);
+}
+
+ion-text {
+  color: var(--ion-robo-bank-blue-tint);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+ion-input {
+  --background: var(--ion-robobank-white);
+  --color: var(--ion-robo-bank-dark-color);
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --placeholder-color: var(--ion-robo-bank-dark-color);
+  --placeholder-font-style: italic;
+  --placeholder-opacity: 1;
+  border: solid 1px var(--ion-robo-bank-dark-color);
+}
+
+ion-button {
+  height: 48px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+

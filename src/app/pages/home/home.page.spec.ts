@@ -13,6 +13,8 @@ import { WeatherBulk } from 'src/app/interfaces/weather';
 import { of, throwError } from 'rxjs';
 import { CityService } from 'src/app/services/city/city.service';
 import { Cities, City } from 'src/app/interfaces/city';
+import { CardComponent } from '../../components/card/card.component';
+import { ModalComponent } from '../../components/modal/modal.component';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -61,7 +63,7 @@ describe('HomePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomePage],
+      declarations: [HomePage, CardComponent, ModalComponent],
       imports: [IonicModule.forRoot(), HttpClientTestingModule],
       providers: [WeatherService, CityService, ToastController],
     }).compileComponents();

@@ -54,3 +54,9 @@ Para executar os testes automatizados do projeto, utilize o seguinte comando:
 ```sh
 yarn test
 ```
+
+## Screenshots
+![](./docs/1.gif)
+![](./docs/2.gif)
+![](./docs/3.gif)
+
